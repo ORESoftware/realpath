@@ -27,6 +27,8 @@ gcc "$HOME/.oresoftware/cpp/realpath.c" -o "$HOME/.oresoftware/bin/realpath" || 
    exit 1;
 }
 
+chmod u+x "$HOME/.oresoftware/bin/realpath"
+
 echo "";
 echo -e "${ql_green} => realpath download/installation succeeded.${ql_no_color}";
 echo "";
