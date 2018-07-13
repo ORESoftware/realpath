@@ -16,13 +16,19 @@ mkdir -p "$HOME/.oresoftware/bin"
 curl -H 'Cache-Control: no-cache' "https://raw.githubusercontent.com/oresoftware/realpath/master/assets/realpath.c?$(date +%s)" \
 --output "$HOME/.oresoftware/cpp/realpath.c"
 
+if ! which gcc; then
+   echo "You need to have gcc on your system to compile c files.";
+   exit 1;
+fi
 
-gcc "$HOME/.oresoftware/cpp/realpath.c" -o "$HOME/.oresoftware/bin/realpath"
+
+gcc "$HOME/.oresoftware/cpp/realpath.c" -o "$HOME/.oresoftware/bin/realpath" || {
+   echo "Could not compile realpath.c on your system with gcc";
+   exit 1;
+}
 
 echo "";
-echo -e "${ql_green} => quicklock download succeeded.${ql_no_color}";
-echo -e "${ql_cyan} => To complete installation of 'quicklock' add the following line to your .bash_profile file:${ql_no_color}";
-echo "  echo \"loading quicklock\" && . \"\$HOME/.quicklock/ql.sh\"";  # `.` is like `source` but more cross-platform
+echo -e "${ql_green} => realpath download/installation succeeded.${ql_no_color}";
 echo "";
 
 
